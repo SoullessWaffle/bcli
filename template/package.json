@@ -1,0 +1,13 @@
+{
+  "name": "{{ projectName }}",
+  "version": "0.0.1",
+  "description": "My awesome project :)",
+  "author": {
+    "name": "{{ author.name }}",
+    "email": "{{ author.email }}"
+  },
+  "repository": {},
+  "homepage": "",
+  "license": "MIT",
+  "main": "src/index.js"
+}

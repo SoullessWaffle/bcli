@@ -1,0 +1,37 @@
+{
+  "name": "blue-app",
+  "version": "0.0.1",
+  "description": "CLI for scaffolding projects with Blue",
+  "author": "Matteo Gabriele <matteo@blocklevel.nl>",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Blocklevel/blue-app"
+  },
+  "bugs": {
+    "url": "https://github.com/Blocklevel/blue-app/issues"
+  },
+  "homepage": "https://github.com/Blocklevel/blue-app#readme",
+  "license": "MIT",
+  "keywords": [
+    "vue",
+    "blue-cli",
+    "blue-app",
+    "blocklevel",
+    "cli",
+    "blue"
+  ],
+  "main": "src/index.js",
+  "bin": {
+    "blue-app": "./bin/blue-app.js"
+  },
+  "dependencies": {
+    "cac": "^3.0.4",
+    "chalk": "^1.1.3",
+    "co": "^4.6.0",
+    "execa": "^0.5.0",
+    "graceful-copy": "^1.1.0",
+    "node-emoji": "^1.4.3",
+    "ora": "^0.3.0",
+    "path-exists": "^3.0.0"
+  }
+}
