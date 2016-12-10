@@ -8,6 +8,7 @@ const cli = cac()
 cli.usage(`${chalk.yellow('blue-app')} [entry] [options]`)
 cli.example('blue-app init my-project')
 
+cli.command('*', 'bla bla bla')
 cli.command('init', 'Create a new project')
 
 cli.parse()

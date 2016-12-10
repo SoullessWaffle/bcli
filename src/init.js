@@ -1,4 +1,5 @@
 'use strict'
+const inquirer = require('inquirer')
 const cac = require('cac')
 const path = require('path')
 const fs = require('fs')
@@ -11,9 +12,11 @@ const emoji = require('node-emoji').emoji
 const execa = require('execa')
 
 const utils = require('../src/utils')
-const spinner = ora('Create a new awesome project').start()
 
 module.exports = co.wrap(function * (options) {
+  console.log('')
+  const spinner = ora('Create a new awesome project').start()
+
   if (!options.projectName) {
     spinner.fail()
     console.error(chalk.red('\nPlease specify a project name'))
@@ -27,16 +30,28 @@ module.exports = co.wrap(function * (options) {
 
   if (exists && !options.force) {
     spinner.fail()
-    console.error(chalk.red('\n Looks like the project already exists'))
-    console.error(chalk.red(`\n   run \`blue-app init ${options.projectName} --force\` to override it`))
-    return
+    console.error(chalk.red('\n Looks like the project already exists\n'))
+    const confirm = yield inquirer.prompt([
+      {
+        type: 'confirm',
+        name: 'force',
+        message: 'Do you want to override it?',
+        default: false
+      }
+    ])
+
+    console.log('')
+
+    if (!confirm.force) {
+      process.exit(1)
+    }
   }
 
-  const template = path.resolve(__dirname, '../template')
+  const template = path.resolve(__dirname, `../template/${options.projectType}`)
   const data = Object.assign({
     author: yield utils.getGitUser()
   }, options)
-  
+
   yield copy(template, dest, { data })
 
   spinner.succeed()
