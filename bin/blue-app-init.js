@@ -10,7 +10,10 @@ module.exports = co.wrap(function * (input, flags) {
     {
       type: 'input',
       name: 'projectName',
-      message: 'What\'s the name of the project?'
+      message: 'What\'s the name of the project?',
+      validate: function (answer) {
+        return answer !== ''
+      }
     },
     {
       type: 'list',
@@ -18,17 +21,30 @@ module.exports = co.wrap(function * (input, flags) {
       message: 'Which type of project is this?',
       choices: [
         {
-          name: 'A website with Blue',
-          value: 'blue'
+        name: 'A website with Blue',
+        value: 'blue'
         },
         {
           name: 'NPM package',
           value: 'npm-package'
         }
       ]
+    },
+    {
+      type: 'checkbox',
+      name: 'dependencies',
+      message: 'Would you like some useful dependencies?',
+      choices: [
+        'storage-helper',
+        'lodash',
+        'vue-analytics',
+        'vue-i18n-manager',
+        'vue-media-embed',
+        'vue-translation-tool '
+      ]
     }
   ])
-  console.log(answer)
+
   const options = Object.assign(answer, flags)
 
   return init(options).catch(err => {
