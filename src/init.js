@@ -70,7 +70,7 @@ module.exports = co.wrap(function * (options) {
      * This is a known issue on npm. Still open for now!
      * Issue reference https://github.com/npm/npm/issues/11486
      */
-    const etcFolder = `${dest}/etc`
+    const etcFolder = `${encodedPath}/etc`
     const exists = yield pathExists(etcFolder)
 
     if (exists) {
