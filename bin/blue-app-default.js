@@ -1,6 +1,5 @@
 const inquirer = require('inquirer')
 const co = require('co')
-const runInit = require('./blue-app-init')
 
 module.exports = co.wrap(function * (input) {
   const answer = yield inquirer.prompt([
@@ -11,7 +10,7 @@ module.exports = co.wrap(function * (input) {
       choices: [
         {
           name: 'Create a new awesome project',
-          value: 'project'
+          value: 'init'
         },
         {
           name: 'Create a component',
@@ -23,28 +22,14 @@ module.exports = co.wrap(function * (input) {
         },
         {
           name: 'Create a Vuex store module',
-          value: 'store-module'
+          value: 'store'
         }
       ]
     }
   ])
 
-  switch (answer) {
-    case 'component':
-
-      break;
-
-    case 'page':
-
-      break;
-
-    case 'store-module':
-
-      break;
-
-    default:
-      // new project
-      runInit()
-
-  }
+  /**
+   * Fire the command!
+   */
+  require(`./blue-app-${answer.task}`)()
 })

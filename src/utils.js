@@ -1,15 +1,5 @@
-const path = require('path')
 const execa = require('execa')
 const co = require('co')
-
-/**
- * Get the current command line directory
- * @param  {String} relative
- * @return {String}
- */
-const getDir = function (relative) {
-  return path.resolve(process.cwd(), relative)
-}
 
 /**
  * Get the current git user credentials
@@ -26,6 +16,5 @@ const getGitUser = co.wrap(function * () {
 })
 
 module.exports = {
-  getDir,
   getGitUser
 }

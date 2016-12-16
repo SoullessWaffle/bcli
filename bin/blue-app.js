@@ -10,5 +10,8 @@ cli.example('blue-app init my-project')
 
 cli.command('*', 'bla bla bla')
 cli.command('init', 'Create a new project')
+cli.command('component', 'Create a new component')
+cli.command('store', 'Create a new Vuex store module')
+cli.command('page', 'Create a new page')
 
 cli.parse()

@@ -12,10 +12,15 @@ const emoji = require('node-emoji').emoji
 const execa = require('execa')
 
 const utils = require('../src/utils')
+const paths = require('../src/paths')
+const commons = require('../src/commons')
+
+const spinner = ora()
 
 module.exports = co.wrap(function * (options) {
-  console.log('')
-  const spinner = ora('Create a new awesome project').start()
+  console.log('') // extra space
+  spinner.text = 'Create a new awesome project'
+  spinner.start()
 
   if (!options.projectName) {
     spinner.fail()
@@ -25,24 +30,13 @@ module.exports = co.wrap(function * (options) {
     return
   }
 
-  const dest = utils.getDir(options.projectName)
+  const dest = `${paths.appDirectory}/${options.projectName}`
   const exists = yield pathExists(dest)
 
   if (exists && !options.force) {
     spinner.fail()
     console.error(chalk.red('\n Looks like the project already exists\n'))
-    const confirm = yield inquirer.prompt([
-      {
-        type: 'confirm',
-        name: 'force',
-        message: 'Do you want to override it?',
-        default: false
-      }
-    ])
-
-    if (!confirm.force) {
-      process.exit(1)
-    }
+    yield commons.confirm()
   }
 
   const template = path.resolve(__dirname, `../template/${options.projectType}`)
@@ -61,7 +55,13 @@ module.exports = co.wrap(function * (options) {
     spinner.start()
     spinner.text = 'Install dependencies'
 
-    yield execa.shell(`npm --prefix ${encodedPath} install --save ${options.dependencies.join(' ')}`)
+    try {
+      yield execa.shell(`npm --prefix ${encodedPath} install --save ${options.dependencies.join(' ')}`)
+    } catch (error) {
+      spinner.fail()
+      console.error(chalk.red(`\n${error.stderr}`))
+      return
+    }
 
     /**
      * In order to be able to install npm packages from outside the project folder
