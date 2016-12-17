@@ -5,8 +5,8 @@ const chalk = require('chalk')
 const pkg = require('../package.json')
 const cli = cac()
 
-cli.usage(`${chalk.yellow('blue-app')} [entry] [options]`)
-cli.example('blue-app init my-project')
+cli.usage(`${chalk.yellow(pkg.name)} [command] [options]`)
+cli.example(`${pkg.name} init my-project`)
 
 cli.command('*', 'bla bla bla')
 cli.command('init', 'Create a new project')

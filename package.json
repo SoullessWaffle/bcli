@@ -22,7 +22,7 @@
   ],
   "main": "src/index.js",
   "bin": {
-    "blue-app": "./bin/blue-app.js"
+    "blue-app": "./bin/cli.js"
   },
   "dependencies": {
     "cac": "^3.0.4",

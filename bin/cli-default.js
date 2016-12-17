@@ -1,5 +1,7 @@
 const inquirer = require('inquirer')
 const co = require('co')
+const emoji = require('node-emoji').emoji
+const chalk = require('chalk')
 
 module.exports = co.wrap(function * (input) {
   const answer = yield inquirer.prompt([
@@ -23,13 +25,27 @@ module.exports = co.wrap(function * (input) {
         {
           name: 'Create a Vuex store module',
           value: 'store'
+        },
+        new inquirer.Separator(),
+        {
+          name: 'Get me out!',
+          value: false
         }
       ]
     }
   ])
 
+  if (!answer.task) {
+    console.log(chalk.bold('\nSee you!'), emoji.rocket)
+    return
+  }
+
   /**
    * Fire the command!
    */
-  require(`./blue-app-${answer.task}`)()
+  try {
+    require(`./cli-${answer.task}`)()
+  } catch (e) {
+    console.log(e)
+  }
 })

@@ -2,9 +2,11 @@ const chalk = require('chalk')
 const co = require('co')
 const runComponent = require('../src/component')
 const inquirer = require('inquirer')
+const commonQuestions = require('../src/common-questions')
+const _ = require('lodash')
 
 module.exports = co.wrap(function * (input, flags) {
-  const answer = yield inquirer.prompt([
+  let answer = yield inquirer.prompt([
     {
       type: 'input',
       name: 'name',
@@ -13,25 +15,11 @@ module.exports = co.wrap(function * (input, flags) {
         return answer !== ''
       }
     },
-    {
-      type: 'list',
-      name: 'basic',
-      message: 'Would you like some basic Vue hooks?',
-      choices: [
-        {
-          name: 'No, thanks!',
-          value: false
-        },
-        {
-          name: 'Oh, yes!',
-          value: true
-        },
-      ],
-      default: false
-    }
+    commonQuestions.vueHooks,
+    commonQuestions.fileLocation
   ])
 
-  const options = Object.assign(answer, flags)
+  const options = _.assignIn(answer, flags)
 
   return runComponent(options).catch(err => {
     console.error(chalk.red(err.stack))

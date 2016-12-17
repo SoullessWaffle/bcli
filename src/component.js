@@ -20,7 +20,10 @@ module.exports = co.wrap(function * (options) {
   spinner.text = 'Create a new component'
   spinner.start()
 
-  const dest = `${paths.appSrc}/app/component/${options.name}`
+
+  const blueStructure = `${paths.appSrc}/app/component/${options.name}`
+  const currentFolder = `${paths.appDirectory}/${options.name}`
+  const dest = options.type === 'blue' ? blueStructure : currentFolder
   const exists = yield pathExists(dest)
 
   if (exists && !options.force) {

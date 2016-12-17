@@ -2,16 +2,9 @@ const chalk = require('chalk')
 const co = require('co')
 const runInit = require('../src/init')
 const inquirer = require('inquirer')
+const deps = require('../src/dependencie-list')
 
 module.exports = co.wrap(function * (input, flags) {
-  const dependencies = [
-    'storage-helper',
-    'lodash',
-    'vue-analytics',
-    'vue-i18n-manager',
-    'vue-media-embed',
-    'vue-translation-tool '
-  ]
   const answer = yield inquirer.prompt([
     {
       type: 'input',
@@ -40,7 +33,7 @@ module.exports = co.wrap(function * (input, flags) {
       type: 'checkbox',
       name: 'dependencies',
       message: 'Would you like some useful dependencies?',
-      choices: dependencies
+      choices: deps
     }
   ])
 

@@ -13,7 +13,7 @@ const execa = require('execa')
 
 const utils = require('../src/utils')
 const paths = require('../src/paths')
-const commons = require('../src/commons')
+const commonQuestions = require('../src/common-questions')
 
 const spinner = ora()
 
@@ -36,7 +36,13 @@ module.exports = co.wrap(function * (options) {
   if (exists && !options.force) {
     spinner.fail()
     console.error(chalk.red('\n Looks like the project already exists\n'))
-    yield commons.confirm()
+
+    const confirm = yield inquirer.prompt([commonQuestions.force])
+
+    if (!confirm.force) {
+      console.log(chalk.bold.yellow('\nNo problems!'))
+      return
+    }
   }
 
   const template = path.resolve(__dirname, `../template/${options.projectType}`)
