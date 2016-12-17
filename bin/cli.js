@@ -8,7 +8,7 @@ const cli = cac()
 cli.usage(`${chalk.yellow(pkg.name)} [command] [options]`)
 cli.example(`${pkg.name} init my-project`)
 
-cli.command('*', 'bla bla bla')
+cli.command('*', 'What you want to do?')
 cli.command('init', 'Create a new project')
 cli.command('component', 'Create a new component')
 cli.command('store', 'Create a new Vuex store module')
