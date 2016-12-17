@@ -4,5 +4,5 @@ module.exports = [
   'vue-analytics',
   'vue-i18n-manager',
   'vue-media-embed',
-  'vue-translation-tool '
+  'vue-translation-tool'
 ]
