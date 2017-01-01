@@ -3,7 +3,7 @@ const co = require('co')
 const runStore = require('../src/store')
 const inquirer = require('inquirer')
 
-const commons = require('../src/commons')
+const commonQuestions = require('../src/common-questions')
 
 module.exports = co.wrap(function * (input, flags) {
   const answer = yield inquirer.prompt([
@@ -16,26 +16,19 @@ module.exports = co.wrap(function * (input, flags) {
       }
     },
     {
-      type: 'list',
-      name: 'basic',
-      message: 'Would you like to add some events?',
-      choices: [
-        {
-          name: 'No!',
-          value: false
-        },
-        {
-          name: 'Engage!',
-          value: true
-        },
-      ],
-      default: false
-    }
+      type: 'input',
+      name: 'eventsList',
+      message: 'Would you like to add some events? (ex: "get token, removeToken")',
+      validate: function (answer) {
+        return answer !== ''
+      }
+    },
+    commonQuestions.fileLocation
   ])
 
   const options = Object.assign(answer, flags)
 
-  return runComponent(options).catch(err => {
+  return runStore(options).catch(err => {
     console.error(chalk.red(err.stack))
     process.exit(1)
   })

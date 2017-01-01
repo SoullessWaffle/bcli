@@ -1,15 +1,12 @@
 import events from './events'
 
 /**
- * <%= name %> mutations
+ * {{ name }} mutations
  */
-export default {<%
-eventsList.forEach(function(event, i){ %>
-  [events.<%= event %>] (state, payload) {
+export default {
+{{#each events}}
+  [events.{{value}}] (state, payload) {
 
-  }<%= i !== eventsList.length - 1 ? ',' : '' %><% }); %><%
-if (eventsList.length === 0) { %>
-  // [events.GET_POST] (state, payload) {
-  //
-  // }<% } %>
+  }{{#if isNotLastItem}},{{/if}}
+{{/each}}
 }

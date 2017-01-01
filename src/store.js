@@ -17,24 +17,25 @@ const spinner = ora()
 
 module.exports = co.wrap(function * (options) {
   console.log('') // extra space
-  spinner.text = 'Create a new component'
+  spinner.text = 'Create a new Vuex store module'
   spinner.start()
 
-  const blueStructure = `${paths.appSrc}/app/component/${options.name}`
+  const blueStructure = `${paths.appSrc}/app/store/modules/${options.name}`
   const currentFolder = `${paths.appDirectory}/${options.name}`
   const dest = options.type === 'blue' ? blueStructure : currentFolder
   const exists = yield pathExists(dest)
 
   if (exists && !options.force) {
     spinner.fail()
-    console.error(chalk.red('\n Looks like the component already exists\n'))
+    console.error(chalk.red('\n Looks like the module already exists\n'))
 
     yield utils.confirmPrompt()
   }
 
-  const template = path.resolve(__dirname, `../template/component`)
+  const template = path.resolve(__dirname, `../template/store`)
   const data = Object.assign({
-    author: yield utils.getGitUser()
+    author: yield utils.getGitUser(),
+    events: utils.getEvents(options.eventsList)
   }, options)
 
   yield copy(template, dest, { data })
