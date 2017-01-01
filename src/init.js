@@ -1,8 +1,6 @@
 'use strict'
 const inquirer = require('inquirer')
-const cac = require('cac')
 const path = require('path')
-const fs = require('fs')
 const chalk = require('chalk')
 const copy = require('graceful-copy')
 const pathExists = require('path-exists')

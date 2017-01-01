@@ -3,7 +3,7 @@ const co = require('co')
 const emoji = require('node-emoji').emoji
 const chalk = require('chalk')
 
-module.exports = co.wrap(function * (input) {
+module.exports = co.wrap(function * () {
   const answer = yield inquirer.prompt([
     {
       type: 'list',

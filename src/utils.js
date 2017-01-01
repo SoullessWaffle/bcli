@@ -24,7 +24,7 @@ const confirmPrompt = co.wrap(function * () {
 
   if (!confirm.force) {
     console.log(chalk.bold.yellow('\nNo problems!\n'))
-    process.exit(1)
+    return
   }
 })
 

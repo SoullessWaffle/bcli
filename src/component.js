@@ -1,15 +1,11 @@
 'use strict'
-const inquirer = require('inquirer')
-const cac = require('cac')
 const path = require('path')
-const fs = require('fs')
 const chalk = require('chalk')
 const copy = require('graceful-copy')
 const pathExists = require('path-exists')
 const co = require('co')
 const ora = require('ora')
 const emoji = require('node-emoji').emoji
-const execa = require('execa')
 
 const utils = require('../src/utils')
 const paths = require('../src/paths')
