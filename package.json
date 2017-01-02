@@ -1,7 +1,7 @@
 {
-  "name": "blue-app",
+  "name": "bcli",
   "version": "0.0.1",
-  "description": "CLI for scaffolding projects with Blue",
+  "description": "Blocklevel Command-line Interface",
   "author": "Matteo Gabriele <matteo@blocklevel.nl>",
   "repository": {
     "type": "git",
@@ -26,7 +26,7 @@
   ],
   "main": "src/index.js",
   "bin": {
-    "blue-app": "./bin/cli.js"
+    "bcli": "./bin/cli.js"
   },
   "engines": {
     "node": ">=6.4.0"
