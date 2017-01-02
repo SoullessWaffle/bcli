@@ -1,2 +1,2 @@
-## blue-app
-CLI for scaffolding projects with Blue!
+## BCLI
+Blocklevel Command-line Interface
