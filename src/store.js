@@ -18,7 +18,7 @@ module.exports = co.wrap(function * (options) {
 
   const blueStructure = `${paths.appSrc}/app/store/modules/${options.name}`
   const currentFolder = `${paths.appDirectory}/${options.name}`
-  const dest = options.type === 'blue' ? blueStructure : currentFolder
+  const dest = options.location === 'blue' ? blueStructure : currentFolder
   const exists = yield pathExists(dest)
 
   if (exists && !options.force) {
@@ -37,5 +37,5 @@ module.exports = co.wrap(function * (options) {
   yield copy(template, dest, { data })
 
   spinner.succeed()
-  console.log(`\nComponent ${chalk.bold(options.name)} created!`, emoji.heart)
+  console.log(`\nVuex store module ${chalk.bold(options.name)} created!`, emoji.heart)
 })

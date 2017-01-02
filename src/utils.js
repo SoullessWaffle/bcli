@@ -4,6 +4,7 @@ const co = require('co')
 const inquirer = require('inquirer')
 const commonQuestions = require('../src/common-questions')
 const chalk = require('chalk')
+const fs = require('fs-extra')
 
 /**
  * Get the current git user credentials
@@ -28,7 +29,7 @@ const confirmPrompt = co.wrap(function * () {
   }
 })
 
-const getEvents = (events) => {
+const getEvents = function (events) {
   const array = events.split(',')
 
   return _.map(array, (item, i) => {
@@ -41,8 +42,27 @@ const getEvents = (events) => {
   })
 }
 
+/**
+ * Rename all file in the folder with a single name
+ * @param  {String} destination
+ * @param  {String} filename
+ */
+const renameFiles = function (destination, filename) {
+  fs.readdir(destination, (readError, files) => {
+    files.forEach(file => {
+      const extention = file.split('.')[1]
+      fs.rename(`${destination}/${file}`, `${destination}/${filename}.${extention}`, (renameError) => {
+        if (renameError) {
+          console.log(renameError)
+        }
+      })
+    })
+  })
+}
+
 module.exports = {
   getGitUser,
   confirmPrompt,
-  getEvents
+  getEvents,
+  renameFiles
 }
