@@ -26,6 +26,10 @@ module.exports = co.wrap(function * () {
           name: 'Create a Vuex store module',
           value: 'store'
         },
+        {
+          name: 'Install most used npm packages',
+          value: 'packages'
+        },
         new inquirer.Separator(),
         {
           name: 'Get me out!',
