@@ -45,4 +45,9 @@ module.exports = co.wrap(function * (options) {
 
   spinner.succeed()
   console.log(`\nComponent ${chalk.yellow.bold(name)} created!`, emoji.heart)
+
+  if (options.location === 'blue') {
+    console.log(chalk.bold('\nCopy the import line for your component:'))
+    console.log(chalk.italic(`\n   import ${_.camelCase(name)} from 'component/${name}/${name}.vue'`))
+  }
 })
