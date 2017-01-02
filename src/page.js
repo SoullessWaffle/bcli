@@ -14,23 +14,23 @@ const spinner = ora()
 
 module.exports = co.wrap(function * (options) {
   console.log('') // extra space
-  spinner.text = 'Create a new component'
+  spinner.text = 'Create a new page'
   spinner.start()
 
   const name = _.kebabCase(options.name)
-  const blueStructure = `${paths.appSrc}/app/component/${name}`
+  const blueStructure = `${paths.appSrc}/app/page/${name}`
   const currentFolder = `${paths.appDirectory}/${name}`
   const dest = options.location === 'blue' ? blueStructure : currentFolder
   const exists = yield pathExists(dest)
 
   if (exists && !options.force) {
     spinner.fail()
-    console.error(chalk.red('\n Looks like the component already exists\n'))
+    console.error(chalk.red('\n Looks like the page already exists\n'))
 
     yield utils.confirmPrompt()
   }
 
-  const template = path.resolve(__dirname, `../template/component`)
+  const template = path.resolve(__dirname, `../template/page`)
   const data = {
     name,
     basic: options.basic,
@@ -44,5 +44,5 @@ module.exports = co.wrap(function * (options) {
   utils.renameFiles(dest, name)
 
   spinner.succeed()
-  console.log(`\nComponent ${chalk.yellow.bold(name)} created!`, emoji.heart)
+  console.log(`\nPage ${chalk.yellow.bold(name)} created!`, emoji.heart)
 })
