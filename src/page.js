@@ -45,4 +45,9 @@ module.exports = co.wrap(function * (options) {
 
   spinner.succeed()
   console.log(`\nPage ${chalk.yellow.bold(name)} created!`, emoji.heart)
+
+  if (options.location === 'blue') {
+    console.log(chalk.bold('\nCopy the import line for your page:'))
+    console.log(chalk.italic(`\n   import ${_.camelCase(name)} from 'page/${name}/${name}.vue'`))
+  }
 })
