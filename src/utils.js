@@ -20,6 +20,9 @@ const getGitUser = co.wrap(function * () {
   }
 })
 
+/**
+ * Confirmation prompt to force actions
+ */
 const confirmPrompt = co.wrap(function * () {
   const confirm = yield inquirer.prompt([commonQuestions.force])
 
@@ -29,6 +32,13 @@ const confirmPrompt = co.wrap(function * () {
   }
 })
 
+/**
+ * Returns an object where the value is the corrent format
+ * of all events we need to loop in the store module.
+ * It also adds, for every item, if the loop needs to render a comma or not
+ * @param  {String} events
+ * @return {Object}
+ */
 const getEvents = function (events) {
   if (!events) {
     return []
