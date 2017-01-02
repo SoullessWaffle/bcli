@@ -10,10 +10,10 @@ module.exports = co.wrap(function * () {
       name: 'task',
       message: 'What you would like to do?',
       choices: [
-        {
-          name: 'Create a new awesome project',
-          value: 'init'
-        },
+        // {
+        //   name: 'Create a new awesome project',
+        //   value: 'init'
+        // },
         {
           name: 'Create a component',
           value: 'component'
