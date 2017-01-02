@@ -1,4 +1,5 @@
 'use strict'
+const _ = require('lodash')
 const path = require('path')
 const chalk = require('chalk')
 const copy = require('graceful-copy')
@@ -16,8 +17,9 @@ module.exports = co.wrap(function * (options) {
   spinner.text = 'Create a new Vuex store module'
   spinner.start()
 
-  const blueStructure = `${paths.appSrc}/app/store/modules/${options.name}`
-  const currentFolder = `${paths.appDirectory}/${options.name}`
+  const name = _.kebabCase(options.name)
+  const blueStructure = `${paths.appSrc}/app/store/modules/${name}`
+  const currentFolder = `${paths.appDirectory}/${name}`
   const dest = options.location === 'blue' ? blueStructure : currentFolder
   const exists = yield pathExists(dest)
 
@@ -29,13 +31,14 @@ module.exports = co.wrap(function * (options) {
   }
 
   const template = path.resolve(__dirname, `../template/store`)
-  const data = Object.assign({
+  const data = {
+    name,
     author: yield utils.getGitUser(),
     events: utils.getEvents(options.eventsList)
-  }, options)
+  }
 
   yield copy(template, dest, { data })
 
   spinner.succeed()
-  console.log(`\nVuex store module ${chalk.bold(options.name)} created!`, emoji.heart)
+  console.log(`\nVuex store module ${chalk.bold(name)} created!`, emoji.heart)
 })

@@ -1,4 +1,5 @@
 'use strict'
+const _ = require('lodash')
 const path = require('path')
 const chalk = require('chalk')
 const copy = require('graceful-copy')
@@ -16,8 +17,9 @@ module.exports = co.wrap(function * (options) {
   spinner.text = 'Create a new component'
   spinner.start()
 
-  const blueStructure = `${paths.appSrc}/app/component/${options.name}`
-  const currentFolder = `${paths.appDirectory}/${options.name}`
+  const name = _.kebabCase(options.name)
+  const blueStructure = `${paths.appSrc}/app/component/${name}`
+  const currentFolder = `${paths.appDirectory}/${name}`
   const dest = options.location === 'blue' ? blueStructure : currentFolder
   const exists = yield pathExists(dest)
 
@@ -29,16 +31,17 @@ module.exports = co.wrap(function * (options) {
   }
 
   const template = path.resolve(__dirname, `../template/component`)
-  const data = Object.assign({
+  const data = {
+    name,
     author: yield utils.getGitUser()
-  }, options)
+  }
 
   // Copy template files to the new destination
   yield copy(template, dest, { data })
 
   // Rename all components file from the template with the component name
-  utils.renameFiles(dest, options.name)
+  utils.renameFiles(dest, name)
 
   spinner.succeed()
-  console.log(`\nComponent ${chalk.bold(options.name)} created!`, emoji.heart)
+  console.log(`\nComponent ${chalk.bold(name)} created!`, emoji.heart)
 })
