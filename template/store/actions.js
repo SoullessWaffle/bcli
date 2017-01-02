@@ -9,4 +9,9 @@ export default {
     commit(events.{{value}}, payload)
   }{{#if isNotLastItem}},{{/if}}
 {{/each}}
+{{#if noEvents}}
+  // [events.FOO]: ({ commit }, payload) => {
+  //   commit(events.FOO, payload)
+  // }
+{{/if}}
 }

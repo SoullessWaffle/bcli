@@ -30,6 +30,10 @@ const confirmPrompt = co.wrap(function * () {
 })
 
 const getEvents = function (events) {
+  if (!events) {
+    return []
+  }
+
   const array = events.split(',')
 
   return _.map(array, (item, i) => {

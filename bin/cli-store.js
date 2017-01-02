@@ -16,9 +16,28 @@ module.exports = co.wrap(function * (input, flags) {
       }
     },
     {
+      type: 'list',
+      name: 'addEvents',
+      message: 'Would you like to add events, actions and mutations?',
+      choices: [
+        {
+          name: 'No, thanks!',
+          value: false
+        },
+        {
+          name: 'Oh, yes!',
+          value: true
+        },
+      ],
+      default: false
+    },
+    {
+      when: function (response) {
+        return response.addEvents
+      },
       type: 'input',
       name: 'eventsList',
-      message: 'Would you like to add some events? (ex: "get token, removeToken")',
+      message: 'List your events here (ex: "get token, removeToken")',
       validate: function (answer) {
         return answer !== ''
       }

@@ -9,4 +9,9 @@ export default {
 
   }{{#if isNotLastItem}},{{/if}}
 {{/each}}
+{{#if noEvents}}
+  // [events.FOO] (state, payload) {
+  //
+  // }
+{{/if}}
 }

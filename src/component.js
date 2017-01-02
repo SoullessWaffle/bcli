@@ -43,5 +43,5 @@ module.exports = co.wrap(function * (options) {
   utils.renameFiles(dest, name)
 
   spinner.succeed()
-  console.log(`\nComponent ${chalk.bold(name)} created!`, emoji.heart)
+  console.log(`\nComponent ${chalk.yellow.bold(name)} created!`, emoji.heart)
 })

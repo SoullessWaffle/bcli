@@ -34,11 +34,12 @@ module.exports = co.wrap(function * (options) {
   const data = {
     name,
     author: yield utils.getGitUser(),
+    noEvents: !options.addEvents,
     events: utils.getEvents(options.eventsList)
   }
 
   yield copy(template, dest, { data })
 
   spinner.succeed()
-  console.log(`\nVuex store module ${chalk.bold(name)} created!`, emoji.heart)
+  console.log(`\nVuex store module ${chalk.yellow.bold(name)} created!`, emoji.heart)
 })
