@@ -5,24 +5,23 @@
   "author": "Matteo Gabriele <matteo@blocklevel.nl>",
   "repository": {
     "type": "git",
-    "url": "https://github.com/Blocklevel/blue-app"
+    "url": "https://github.com/Blocklevel/bcli"
   },
   "scripts": {
     "lint": "esw -f simple-detail",
     "lint:watch": "esw -f simple-detail -w"
   },
   "bugs": {
-    "url": "https://github.com/Blocklevel/blue-app/issues"
+    "url": "https://github.com/Blocklevel/bcli/issues"
   },
-  "homepage": "https://github.com/Blocklevel/blue-app#readme",
+  "homepage": "https://github.com/Blocklevel/bcli#readme",
   "license": "MIT",
   "keywords": [
     "vue",
-    "blue-cli",
-    "blue-app",
+    "bcli",
+    "blocklevel-cli",
     "blocklevel",
-    "cli",
-    "blue"
+    "cli"
   ],
   "main": "src/index.js",
   "bin": {
