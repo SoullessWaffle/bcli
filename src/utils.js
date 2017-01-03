@@ -2,7 +2,7 @@ const execa = require('execa')
 const _ = require('lodash')
 const co = require('co')
 const inquirer = require('inquirer')
-const commonQuestions = require('../src/common-questions')
+const commonQuestions = require('./commons/questions')
 const chalk = require('chalk')
 const fs = require('fs-extra')
 

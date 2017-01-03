@@ -9,9 +9,9 @@ const ora = require('ora')
 const emoji = require('node-emoji').emoji
 const execa = require('execa')
 
-const utils = require('../src/utils')
-const paths = require('../src/paths')
-const commonQuestions = require('../src/common-questions')
+const utils = require('../utils')
+const paths = require('../commons/paths')
+const commonQuestions = require('../commons/questions')
 
 const spinner = ora()
 
@@ -43,7 +43,7 @@ module.exports = co.wrap(function * (options) {
     }
   }
 
-  const template = path.resolve(__dirname, `../template/${options.projectType}`)
+  const template = `${paths.cliTemplates}/${options.projectType}`
   const data = Object.assign({
     author: yield utils.getGitUser(),
     dependencies: options.dependencies

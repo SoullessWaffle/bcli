@@ -20,5 +20,5 @@ module.exports = {
   appSrc: resolveApp('src'),
   appNodeModules: resolveApp('node_modules'),
   // The CLI
-  cliTemplates: resolveCli('templates')
+  cliTemplates: resolveCli('../../template')
 }

@@ -1,8 +1,8 @@
 const chalk = require('chalk')
 const co = require('co')
-const runInit = require('../src/init')
+const runInit = require('../src/commands/init')
 const inquirer = require('inquirer')
-const deps = require('../src/dependencie-list')
+const deps = require('../src/commons/dependencies')
 
 module.exports = co.wrap(function * (input, flags) {
   const answer = yield inquirer.prompt([

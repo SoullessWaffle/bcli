@@ -1,8 +1,8 @@
 const chalk = require('chalk')
 const co = require('co')
-const runPage = require('../src/page')
+const runPage = require('../src/commands/page')
 const inquirer = require('inquirer')
-const commonQuestions = require('../src/common-questions')
+const commonQuestions = require('../src/commons/questions')
 const _ = require('lodash')
 
 module.exports = co.wrap(function * (input, flags) {

@@ -8,8 +8,8 @@ const co = require('co')
 const ora = require('ora')
 const emoji = require('node-emoji').emoji
 
-const utils = require('../src/utils')
-const paths = require('../src/paths')
+const utils = require('../utils')
+const paths = require('../commons/paths')
 const spinner = ora()
 
 module.exports = co.wrap(function * (options) {
@@ -30,7 +30,7 @@ module.exports = co.wrap(function * (options) {
     yield utils.confirmPrompt()
   }
 
-  const template = path.resolve(__dirname, `../template/store`)
+  const template = `${paths.cliTemplates}/store`
   const data = {
     name,
     author: yield utils.getGitUser(),

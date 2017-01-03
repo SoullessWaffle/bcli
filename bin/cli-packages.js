@@ -1,8 +1,8 @@
 const chalk = require('chalk')
 const co = require('co')
-const runPackages = require('../src/packages')
+const runPackages = require('../src/commands/packages')
 const inquirer = require('inquirer')
-const deps = require('../src/dependencie-list')
+const deps = require('../src/commons/dependencies')
 const _ = require('lodash')
 
 module.exports = co.wrap(function * (input, flags) {
