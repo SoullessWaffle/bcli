@@ -15,5 +15,6 @@ cli.command('page', 'Create a new page')
 cli.command('packages', 'Install most used npm packages')
 cli.command('start', 'Run webpack dev server')
 cli.command('project', 'Create a new project')
+cli.command('share', 'Share the current local revision with Ngrok')
 
 cli.parse()

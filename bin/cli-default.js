@@ -31,6 +31,10 @@ module.exports = co.wrap(function * () {
           name: 'Install most used npm packages',
           value: 'packages'
         },
+        {
+          name: 'Share your local version',
+          value: 'share'
+        },
         new inquirer.Separator(),
         {
           name: 'Get me out!',
