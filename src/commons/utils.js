@@ -95,7 +95,9 @@ const getAppConfig = function () {
     return require(paths.appConfig)
   } catch (error) {
     console.log(chalk.red(`\nYou need to be in the root folder of a Blue project.`))
-    return
+    /* eslint-disable*/
+    process.exit(1)
+    /* eslint-enable*/
   }
 }
 
