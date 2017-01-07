@@ -10,7 +10,7 @@ $ npm install -g bcli
 ```
 
 ### Usage
-You only need to type and anwer the questions
+You only need to type and answer the questions
 
 ```bash
 $ bcli
@@ -38,4 +38,4 @@ Add a choice inside the list of choices `/bin/cli-default`, `name` should be the
 
 Add a new module inside /bin prepended with `cli-`, the module should ask the user for input and execute the command when done.
 
-Add a new module in `/src/commands` which executes the desired process
+Add a new module in `/src` which executes the desired process
