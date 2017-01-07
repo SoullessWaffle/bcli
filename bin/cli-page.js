@@ -1,11 +1,12 @@
+'use strict'
+const _ = require('lodash')
 const chalk = require('chalk')
 const co = require('co')
-const runPage = require('../src/commands/page')
+const runComponent = require('../src/component')
 const inquirer = require('inquirer')
 const commonQuestions = require('../src/commons/questions')
-const _ = require('lodash')
 
-module.exports = co.wrap(function * (input, flags) {
+module.exports = co.wrap(function * () {
   let answer = yield inquirer.prompt([
     {
       type: 'input',
@@ -19,9 +20,11 @@ module.exports = co.wrap(function * (input, flags) {
     commonQuestions.fileLocation
   ])
 
-  const options = _.assignIn(answer, flags)
+  const options = _.assignIn(answer, {
+    type: 'page'
+  })
 
-  return runPage(options).catch(err => {
+  return runComponent(options).catch(err => {
     console.error(chalk.red(err.stack))
     return
   })

@@ -1,23 +1,39 @@
 const execa = require('execa')
+const path = require('path')
 const _ = require('lodash')
 const co = require('co')
 const inquirer = require('inquirer')
-const commonQuestions = require('./commons/questions')
+const commonQuestions = require('./questions')
 const chalk = require('chalk')
 const fs = require('fs-extra')
+
+const checkType = function (type, value, fallback) {
+  return typeof value === type ? value : fallback
+}
 
 /**
  * Get the current git user credentials
  * @return {Object}
  */
 const getGitUser = co.wrap(function * () {
-  const name = yield execa.shell('git config user.name')
-  const email = yield execa.shell('git config user.email')
+  let name = 'username'
+  let email = 'example@domain.com'
 
-  return {
-    name: name.stdout,
-    email: email.stdout
+  /**
+   * It's possible that the current user doesn't have the git gloabal user setup.
+   * In that case we're going to pass placeholders.
+   */
+  try {
+    name = yield execa.shell('git config user.name')
+    email = yield execa.shell('git config user.email')
+
+    name = name.stdout
+    email = email.stdout
+  } catch (error) {
+    console.log(chalk.yellow('\n\nGit global credentials not found.\n'))
   }
+
+  return { name, email }
 })
 
 /**
@@ -78,5 +94,6 @@ module.exports = {
   getGitUser,
   confirmPrompt,
   getEvents,
-  renameFiles
+  renameFiles,
+  checkType
 }

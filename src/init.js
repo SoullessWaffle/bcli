@@ -1,24 +1,23 @@
 'use strict'
+const _ = require('lodash')
 const inquirer = require('inquirer')
-const path = require('path')
 const chalk = require('chalk')
 const copy = require('graceful-copy')
 const pathExists = require('path-exists')
 const co = require('co')
 const ora = require('ora')
 const emoji = require('node-emoji').emoji
-const execa = require('execa')
-
-const utils = require('../utils')
-const paths = require('../commons/paths')
-const commonQuestions = require('../commons/questions')
-
+const utils = require('./commons/utils')
+const paths = require('./commons/paths')
+const commonQuestions = require('./commons/questions')
 const spinner = ora()
 
 module.exports = co.wrap(function * (options) {
   console.log('') // extra space
   spinner.text = 'Create a new awesome project'
   spinner.start()
+
+  const name = _.kebabCase(options.projectName)
 
   if (!options.projectName) {
     spinner.fail()
@@ -28,7 +27,7 @@ module.exports = co.wrap(function * (options) {
     return
   }
 
-  const dest = `${paths.appDirectory}/${options.projectName}`
+  const dest = `${paths.appDirectory}/${name}`
   const exists = yield pathExists(dest)
 
   if (exists && !options.force) {
@@ -45,6 +44,7 @@ module.exports = co.wrap(function * (options) {
 
   const template = `${paths.cliTemplates}/${options.projectType}`
   const data = Object.assign({
+    name,
     author: yield utils.getGitUser(),
     dependencies: options.dependencies
   }, options)
@@ -53,36 +53,10 @@ module.exports = co.wrap(function * (options) {
 
   spinner.succeed()
 
-  if (options.dependencies.length) {
-    const encodedPath = dest.replace(/ /g, '\\ ')
-
-    spinner.start()
-    spinner.text = 'Install dependencies'
-
-    try {
-      yield execa.shell(`npm --prefix ${encodedPath} install --save ${options.dependencies.join(' ')}`)
-    } catch (error) {
-      spinner.fail()
-      console.error(chalk.red(`\n${error.stderr}`))
-      return
-    }
-
-    /**
-     * In order to be able to install npm packages from outside the project folder
-     * the command `npm --prefix` needs to run, but randomly it cause the creation
-     * of an emtpy /etc folder in the root of the project.
-     * This is a known issue on npm. Still open for now!
-     * Issue reference https://github.com/npm/npm/issues/11486
-     */
-    const etcFolder = `${encodedPath}/etc`
-    const exists = yield pathExists(etcFolder)
-
-    if (exists) {
-      yield execa.shell(`rm -rf ${etcFolder}`)
-    }
-
-    spinner.succeed()
-  }
-
   console.log('\nWebsite!', emoji.heart)
+  console.log(chalk.green(`\n  New project \`${name}\` was created successfully!`))
+  console.log(chalk.bold('\n  To get started:\n'))
+  console.log(`  cd ${name}`)
+  console.log('  yarn')
+  console.log('  yarn dev or npm run dev\n')
 })

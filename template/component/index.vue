@@ -3,7 +3,7 @@
 <style module src="./{{ name }}.css"></style>
 
 <template>
-  <div :class="$style.component">
+  <div :class="$style.{{ type }}">
 
   </div>
 </template>

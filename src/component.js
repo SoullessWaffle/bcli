@@ -1,41 +1,38 @@
 'use strict'
 const _ = require('lodash')
-const path = require('path')
 const chalk = require('chalk')
 const copy = require('graceful-copy')
 const pathExists = require('path-exists')
 const co = require('co')
 const ora = require('ora')
 const emoji = require('node-emoji').emoji
-
-const utils = require('../utils')
-const paths = require('../commons/paths')
+const utils = require('./commons/utils')
+const paths = require('./commons/paths')
 const spinner = ora()
 
 module.exports = co.wrap(function * (options) {
   console.log('') // extra space
-  spinner.text = 'Create a new page'
+  spinner.text = `Create a new ${options.type}`
   spinner.start()
 
   const name = _.kebabCase(options.name)
-  const blueStructure = `${paths.appSrc}/app/page/${name}`
+  const blueStructure = `${paths.appRoot}/${options.type}/${name}`
   const currentFolder = `${paths.appDirectory}/${name}`
   const dest = options.location === 'blue' ? blueStructure : currentFolder
   const exists = yield pathExists(dest)
 
   if (exists && !options.force) {
     spinner.fail()
-    console.error(chalk.red('\n Looks like the page already exists\n'))
+    console.error(chalk.red(`\n Looks like the ${options.type} already exists\n`))
 
     yield utils.confirmPrompt()
   }
 
-  const template = `${paths.cliTemplates}/page`
-  const data = {
+  const template = `${paths.cliTemplates}/component`
+  const data = _.assignIn(options, {
     name,
-    basic: options.basic,
     author: yield utils.getGitUser()
-  }
+  })
 
   // Copy template files to the new destination
   yield copy(template, dest, { data })
@@ -44,10 +41,12 @@ module.exports = co.wrap(function * (options) {
   utils.renameFiles(dest, name)
 
   spinner.succeed()
-  console.log(`\nPage ${chalk.yellow.bold(name)} created!`, emoji.heart)
+  console.log(`\n${_.startCase(options.type)} ${chalk.yellow.bold(name)} created!`, emoji.heart)
 
   if (options.location === 'blue') {
-    console.log(chalk.bold('\nCopy the import line for your page:'))
-    console.log(chalk.italic(`\n   import ${_.camelCase(name)} from 'page/${name}/${name}.vue'`))
+    console.log(`\nCopy the import line for your ${options.type}:`)
+    console.log(
+      chalk.italic(`\n   import ${_.camelCase(name)} from '${options.type}/${name}/${name}.vue'`)
+    )
   }
 })

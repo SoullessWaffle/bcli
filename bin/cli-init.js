@@ -1,6 +1,7 @@
+'use strict'
 const chalk = require('chalk')
 const co = require('co')
-const runInit = require('../src/commands/init')
+const runInit = require('../src/init')
 const inquirer = require('inquirer')
 const deps = require('../src/commons/dependencies')
 
@@ -28,12 +29,6 @@ module.exports = co.wrap(function * (input, flags) {
           value: 'npm-package'
         }
       ]
-    },
-    {
-      type: 'checkbox',
-      name: 'dependencies',
-      message: 'Would you like some useful dependencies?',
-      choices: deps
     }
   ])
 

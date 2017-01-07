@@ -1,15 +1,13 @@
 'use strict'
 const _ = require('lodash')
-const path = require('path')
 const chalk = require('chalk')
 const copy = require('graceful-copy')
 const pathExists = require('path-exists')
 const co = require('co')
 const ora = require('ora')
 const emoji = require('node-emoji').emoji
-
-const utils = require('../utils')
-const paths = require('../commons/paths')
+const utils = require('./commons/utils')
+const paths = require('./commons/paths')
 const spinner = ora()
 
 module.exports = co.wrap(function * (options) {
@@ -18,7 +16,7 @@ module.exports = co.wrap(function * (options) {
   spinner.start()
 
   const name = _.kebabCase(options.name)
-  const blueStructure = `${paths.appSrc}/app/store/modules/${name}`
+  const blueStructure = `${paths.appRoot}/store/modules/${name}`
   const currentFolder = `${paths.appDirectory}/${name}`
   const dest = options.location === 'blue' ? blueStructure : currentFolder
   const exists = yield pathExists(dest)

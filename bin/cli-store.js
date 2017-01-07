@@ -1,6 +1,7 @@
+'use strict'
 const chalk = require('chalk')
 const co = require('co')
-const runStore = require('../src/commands/store')
+const runStore = require('../src/store')
 const inquirer = require('inquirer')
 const commonQuestions = require('../src/commons/questions')
 

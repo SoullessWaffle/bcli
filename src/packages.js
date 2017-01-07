@@ -4,7 +4,6 @@ const co = require('co')
 const ora = require('ora')
 const emoji = require('node-emoji').emoji
 const execa = require('execa')
-
 const spinner = ora()
 
 module.exports = co.wrap(function * (options) {
