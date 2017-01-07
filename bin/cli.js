@@ -14,5 +14,6 @@ cli.command('component', 'Create a new component')
 cli.command('store', 'Create a new Vuex store module')
 cli.command('page', 'Create a new page')
 cli.command('packages', 'Install most used npm packages')
+cli.command('share', 'Share the current local revision with Ngrok')
 
 cli.parse()
