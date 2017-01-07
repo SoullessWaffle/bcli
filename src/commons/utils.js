@@ -1,5 +1,5 @@
 const execa = require('execa')
-const path = require('path')
+const paths = require('./paths')
 const _ = require('lodash')
 const co = require('co')
 const inquirer = require('inquirer')
@@ -90,10 +90,20 @@ const renameFiles = function (destination, filename) {
   })
 }
 
+const getAppConfig = function () {
+  try {
+    return require(paths.appConfig)
+  } catch (error) {
+    console.log(chalk.red(`\nYou need to be in the root folder of a Blue project.`))
+    return
+  }
+}
+
 module.exports = {
   getGitUser,
   confirmPrompt,
   getEvents,
   renameFiles,
-  checkType
+  checkType,
+  getAppConfig
 }

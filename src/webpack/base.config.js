@@ -4,7 +4,7 @@ const paths = require('../commons/paths')
 module.exports = {
   context: paths.appDirectory,
   entry: {
-    app: [paths.relativeAppEntry]
+    app: [paths.appEntry]
   },
   output: {
     path: paths.appBuild,

@@ -14,6 +14,6 @@ cli.command('store', 'Create a new Vuex store module')
 cli.command('page', 'Create a new page')
 cli.command('packages', 'Install most used npm packages')
 cli.command('start', 'Run webpack dev server')
-cli.command('init', 'Create a new project')
+cli.command('project', 'Create a new project')
 
 cli.parse()
