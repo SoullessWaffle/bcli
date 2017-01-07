@@ -1,9 +1,8 @@
 'use strict'
 const chalk = require('chalk')
 const co = require('co')
-const runInit = require('../src/init')
+const runDefault = require('../src')
 const inquirer = require('inquirer')
-const deps = require('../src/commons/dependencies')
 
 module.exports = co.wrap(function * (input, flags) {
   const answer = yield inquirer.prompt([
@@ -34,7 +33,7 @@ module.exports = co.wrap(function * (input, flags) {
 
   const options = Object.assign(answer, flags)
 
-  return runInit(options).catch(err => {
+  return runDefault(options).catch(err => {
     console.error(chalk.red(err.stack))
     return
   })
