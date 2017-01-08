@@ -6,6 +6,8 @@ const config = require('./base.config')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const appConfig = utils.getAppConfig()
 
+const title = appConfig.title || 'Blue'
+
 config.devtool = 'evel-source-map'
 
 config.devServer = {
@@ -41,7 +43,7 @@ config.plugins = config.plugins.concat([
   new FriendlyErrors({
     compilationSuccessInfo: {
       messages: [
-        `'${appConfig.title || 'Blue'}' is running here http://localhost:${config.devServer.port}\n`
+        `'${title}' is running here http://localhost:${config.devServer.port}\n`
       ]
     }
   }),

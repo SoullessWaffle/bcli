@@ -12,6 +12,7 @@ module.exports = {
     filename: '[name].js'
   },
   resolve: {
+    root: paths.appSrc,
     extensions: ['', '.js', '.vue', '.css'],
     alias: {
       vue: 'vue/dist/vue.js'
@@ -46,6 +47,10 @@ module.exports = {
             require.resolve('babel-plugin-transform-runtime')
           ]
         }
+      },
+      {
+        test: /\.vue$/,
+        loader: 'vue-loader'
       },
       {
         test: /\.html$/,

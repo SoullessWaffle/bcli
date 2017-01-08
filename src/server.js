@@ -9,8 +9,8 @@ const WebpackDevServer = require('webpack-dev-server')
 
 module.exports = function () {
   const appConfig = utils.getAppConfig()
-  const options = _.merge(envConfig, appConfig)
-  const webpackConfig = _.merge(webpackBaseConfig, options)
+  const options = _.merge({}, envConfig, appConfig)
+  const webpackConfig = _.merge({}, webpackBaseConfig, options)
   const port = webpackConfig.devServer.port
   const compiler = webpack(webpackConfig)
 
