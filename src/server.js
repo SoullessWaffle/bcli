@@ -16,6 +16,7 @@ module.exports = function () {
   const serverUrl = `http://localhost:${port}`
 
   // add webpack-dev-server to the webpack entry point
+  // webpack-dev-server needs to point to the cli node_module folder or won't be recognized
   const devServerPath = `${paths.cliNodeModules}/webpack-dev-server/client?${serverUrl}`
   webpackConfig.entry.app.unshift(devServerPath)
 

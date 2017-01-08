@@ -18,16 +18,8 @@ module.exports = co.wrap(function * (options) {
   spinner.start()
 
   const name = _.kebabCase(options.projectName)
-
-  if (!options.projectName) {
-    spinner.fail()
-    console.error(chalk.red('\nPlease specify a project name'))
-    console.error(chalk.bold.red('\nExample:'))
-    console.error(chalk.red('\n  blue-app init my-project\n'))
-    return
-  }
-
-  const dest = `${paths.appDirectory}/${name}`
+  const folderName = _.kebabCase(options.folderName)
+  const dest = `${paths.appDirectory}/${folderName}`
   const exists = yield pathExists(dest)
 
   if (exists && !options.force) {
@@ -42,7 +34,7 @@ module.exports = co.wrap(function * (options) {
     }
   }
 
-  const template = `${paths.cliTemplates}/${options.projectType}`
+  const template = `${paths.cliTemplates}/blue`
   const data = Object.assign({
     name,
     author: yield utils.getGitUser(),
@@ -56,7 +48,7 @@ module.exports = co.wrap(function * (options) {
   console.log('\nWebsite!', emoji.heart)
   console.log('\nNew project', chalk.bold(name), 'was created successfully!')
   console.log(chalk.bold('\nTo get started:\n'))
-  console.log(chalk.italic(`  cd ${name}\n`))
+  console.log(chalk.italic(`  cd ${folderName}\n`))
   console.log(chalk.italic('  npm install\n'))
   console.log(chalk.italic('  npm run dev\n'))
 })

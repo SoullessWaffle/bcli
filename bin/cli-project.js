@@ -15,19 +15,15 @@ module.exports = co.wrap(function * (input, flags) {
       }
     },
     {
-      type: 'list',
-      name: 'projectType',
-      message: 'Which type of project is this?',
-      choices: [
-        {
-        name: 'A website with Blue',
-        value: 'blue'
-        },
-        {
-          name: 'NPM package',
-          value: 'npm-package'
-        }
-      ]
+      type: 'input',
+      name: 'folderName',
+      message: 'What\'s the name of the folder?',
+      default: function (response) {
+        return response.projectName
+      },
+      validate: function (answer) {
+        return answer !== ''
+      }
     }
   ])
 

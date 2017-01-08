@@ -15,6 +15,7 @@ module.exports = {
     root: paths.appSrc,
     extensions: ['', '.js', '.vue', '.css'],
     alias: {
+      // Vue is installed in the project itself because it can't be coupled with the cli.
       vue: 'vue/dist/vue.js'
     },
     modules: [
@@ -54,7 +55,7 @@ module.exports = {
       },
       {
         test: /\.html$/,
-        loader: 'html-loader'
+        loader: require.resolve('html-loader')
       }
     ]
   },
