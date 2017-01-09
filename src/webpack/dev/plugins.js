@@ -1,6 +1,5 @@
 'use strict'
 const webpack = require('webpack')
-const FriendlyErrors = require('friendly-errors-webpack-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const utils = require('../../commons/utils')
 const appConfig = utils.getAppConfig()
@@ -14,13 +13,6 @@ module.exports = [
     __DEV__: true,
     'process.env': {
       NODE_ENV: '"development"'
-    }
-  }),
-  new FriendlyErrors({
-    compilationSuccessInfo: {
-      messages: [
-        `'${name}' is running on http://localhost:${port}\n`
-      ]
     }
   }),
   new HtmlWebpackPlugin({
