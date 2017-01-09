@@ -3,6 +3,7 @@ const _ = require('lodash')
 const inquirer = require('inquirer')
 const chalk = require('chalk')
 const copy = require('graceful-copy')
+const execa = require('execa')
 const pathExists = require('path-exists')
 const co = require('co')
 const ora = require('ora')
@@ -41,7 +42,17 @@ module.exports = co.wrap(function * (options) {
     dependencies: options.dependencies
   }, options)
 
+  // move and interpolate all templates
   yield copy(template, dest, { data })
+
+  spinner.succeed()
+
+  spinner.text = 'Install dependencies'
+  spinner.start()
+
+  // change directory context and install all dependencies
+  process.chdir(dest)
+  yield execa.shell('npm install')
 
   spinner.succeed()
 
@@ -49,6 +60,5 @@ module.exports = co.wrap(function * (options) {
   console.log('\nNew project', chalk.bold(name), 'was created successfully!')
   console.log(chalk.bold('\nTo get started:\n'))
   console.log(chalk.italic(`  cd ${folderName}\n`))
-  console.log(chalk.italic('  npm install\n'))
-  console.log(chalk.italic('  npm run dev\n'))
+  console.log(chalk.italic('  npm run dev'))
 })
