@@ -7,10 +7,8 @@ const webpack = require('webpack')
 const webpackBaseConfig = require('./webpack/base.config')
 const envConfig = require('./webpack/config.dev')
 const WebpackDevServer = require('webpack-dev-server')
-const merge = require('webpack-merge')
 const detectPort = require('./detect-port')
 const co = require('co')
-const chalk = require('chalk')
 
 module.exports = co.wrap(function * () {
   const config = _.merge({}, envConfig, utils.getAppConfig())
