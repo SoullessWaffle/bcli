@@ -13,7 +13,7 @@ module.exports = co.wrap(function * () {
       choices: [
         {
           name: 'Create a new awesome project',
-          value: 'init'
+          value: 'project'
         },
         {
           name: 'Create a component',
