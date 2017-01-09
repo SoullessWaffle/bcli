@@ -15,7 +15,7 @@ module.exports = {
     root: paths.appSrc,
     extensions: ['', '.js', '.vue', '.css'],
     alias: {
-      // Vue is installed in the project itself because it can't be coupled with the cli.
+      // Vue is installed in the project itself because it can't be coupled with the cli
       vue: 'vue/dist/vue.js'
     },
     modules: [
@@ -51,6 +51,7 @@ module.exports = {
       },
       {
         test: /\.vue$/,
+        // vue-loader is installed in the project itself because it can't be coupled with the cli
         loader: 'vue-loader'
       },
       {
