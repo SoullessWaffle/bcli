@@ -37,7 +37,7 @@ module.exports = co.wrap(function * (options) {
   // Copy template files to the new destination
   yield copy(template, dest, { data })
 
-  // Rename all components file from the template with the component name
+  // Rename all component files from the template to the component name
   utils.renameFiles(dest, name)
 
   spinner.succeed()

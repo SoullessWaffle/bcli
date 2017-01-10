@@ -10,13 +10,13 @@ $ npm install -g bcli
 ```
 
 ### Usage
-You only need to type and answer the questions
+You only need to start the prompt and answer the questions
 
 ```bash
 $ bcli
 ```
 
-or check all available commands
+You can check all available commands
 
 ```bash
 $ bcli -h
@@ -34,8 +34,8 @@ $ bcli -h
 `bcli share` Shares a demo with ngrok
 
 ### Adding a new command
-Add a choice inside the list of choices `/bin/cli-default`, `name` should be the the title that will shown by the initial prompt, `value` should correspond to the name of the command listed in the `/bin` folder.
+Add a choice inside the list of choices in `/bin/cli-default.js`, `name` should be the the title that will be shown by the initial prompt, `value` should correspond to the name of the command listed in the `/bin` folder.
 
-Add a new module inside /bin prepended with `cli-`, the module should ask the user for input and execute the command when done.
+Add a new module inside `/bin` prepended with `cli-`. The module should ask the user for input and execute the command when done.
 
-Add a new module in `/src` which executes the desired process
+Add a new module in `/src` which executes the desired process.

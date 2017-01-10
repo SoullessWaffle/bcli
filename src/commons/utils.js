@@ -12,7 +12,7 @@ const checkType = function (type, value, fallback) {
 }
 
 /**
- * Get the current git user credentials
+ * Get the credentials of the current git user
  * @return {Object}
  */
 const getGitUser = co.wrap(function * () {
@@ -20,8 +20,8 @@ const getGitUser = co.wrap(function * () {
   let email = 'example@domain.com'
 
   /**
-   * It's possible that the current user doesn't have the git gloabal user setup.
-   * In that case we're going to pass placeholders.
+   * It's possible that the current user hasn't set up the git global user info.
+   * In that case we'll use placeholders.
    */
   try {
     name = yield execa.shell('git config user.name')
@@ -37,21 +37,20 @@ const getGitUser = co.wrap(function * () {
 })
 
 /**
- * Confirmation prompt to force actions
+ * Confirmation prompt for overriding actions
  */
 const confirmPrompt = co.wrap(function * () {
   const confirm = yield inquirer.prompt([commonQuestions.force])
 
   if (!confirm.force) {
-    console.log(chalk.bold.yellow('\nNo problems!\n'))
+    console.log(chalk.bold.yellow('\nNo problem!\n'))
     return
   }
 })
 
 /**
- * Returns an object where the value is the corrent format
- * of all events we need to loop in the store module.
- * It also adds, for every item, if the loop needs to render a comma or not
+ * Returns an array of event objects in the correct format so we can loop over it later
+ * It also determines whether the items need a comma
  * @param  {String} events
  * @return {Object}
  */
@@ -73,7 +72,7 @@ const getEvents = function (events) {
 }
 
 /**
- * Rename all file in the folder with a single name
+ * Rename all files in a folder to a single filename
  * @param  {String} destination
  * @param  {String} filename
  */

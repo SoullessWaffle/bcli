@@ -16,8 +16,9 @@ module.exports = co.wrap(function * () {
   const port = yield detectPort(webpackConfig.devServer.port)
   const serverUrl = `http://localhost:${port}`
 
-  // In order to be able to change server port in runtime and display the current project and where
-  // it's serverd, we need to add the FriendlyErrorsWebpackPlugin after everything is sorted
+  // Add the FriendlyErrorsWebpackPlugin after everything is sorted.
+  // We need this to be able to change server port in runtime and
+  // display the current project and where it's served.
   webpackConfig.plugins.push(
     new FriendlyErrorsWebpackPlugin({
       compilationSuccessInfo: {
@@ -27,7 +28,7 @@ module.exports = co.wrap(function * () {
   )
 
   // add webpack-dev-server to the webpack entry point
-  // webpack-dev-server needs to point to the cli node_module folder or won't be recognized
+  // webpack-dev-server needs to point to the cli node_modules folder or won't be recognized
   const devServerPath = `${paths.cliNodeModules}/webpack-dev-server/client?${serverUrl}`
   webpackConfig.entry.app.unshift(devServerPath)
 

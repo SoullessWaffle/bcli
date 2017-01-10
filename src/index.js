@@ -30,7 +30,7 @@ module.exports = co.wrap(function * (options) {
     const confirm = yield inquirer.prompt([commonQuestions.force])
 
     if (!confirm.force) {
-      console.log(chalk.bold.yellow('\nNo problems!'))
+      console.log(chalk.bold.yellow('\nNo problem!'))
       return
     }
   }
@@ -42,7 +42,7 @@ module.exports = co.wrap(function * (options) {
     dependencies: options.dependencies
   }, options)
 
-  // move and interpolate all templates
+  // copy and interpolate all template files
   yield copy(template, dest, { data })
 
   spinner.succeed()

@@ -9,7 +9,7 @@ const force = {
       value: false
     },
     {
-      name: 'Yes, please!!',
+      name: 'Yes, please!',
       value: true
     }
   ]
@@ -35,7 +35,7 @@ const vueHooks = {
 const fileLocation = {
   type: 'list',
   name: 'location',
-  message: 'Where shoud I drop it?',
+  message: 'Where should I drop it?',
   choices: [
     {
       name: 'Make it for Blue',
