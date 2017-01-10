@@ -11,7 +11,7 @@ module.exports = co.wrap(function * () {
     {
       type: 'input',
       name: 'name',
-      message: 'What\'s the name component name?',
+      message: 'What\'s the name of the component?',
       validate: function (answer) {
         return answer !== ''
       }

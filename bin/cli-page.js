@@ -11,7 +11,7 @@ module.exports = co.wrap(function * () {
     {
       type: 'input',
       name: 'name',
-      message: 'What\'s the name page name?',
+      message: 'What\'s the name of the page?',
       validate: function (answer) {
         return answer !== ''
       }

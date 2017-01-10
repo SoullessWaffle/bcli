@@ -31,7 +31,7 @@ $ bcli -h
 
 `bcli packages` Installs most used npm packages
 
-`bcli share` Shares a demo with Ngrok
+`bcli share` Shares a demo with ngrok
 
 ### Adding a new command
 Add a choice inside the list of choices `/bin/cli-default`, `name` should be the the title that will shown by the initial prompt, `value` should correspond to the name of the command listed in the `/bin` folder.

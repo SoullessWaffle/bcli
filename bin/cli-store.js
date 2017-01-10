@@ -10,7 +10,7 @@ module.exports = co.wrap(function * (input, flags) {
     {
       type: 'input',
       name: 'name',
-      message: 'What\'s the name module name?',
+      message: 'What\'s the name of the module?',
       validate: function (answer) {
         return answer !== ''
       }
