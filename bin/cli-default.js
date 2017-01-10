@@ -9,7 +9,7 @@ module.exports = co.wrap(function * () {
     {
       type: 'list',
       name: 'task',
-      message: 'What do you want to do?',
+      message: 'What would you like to do?',
       choices: [
         {
           name: 'Create a new awesome project',

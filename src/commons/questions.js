@@ -1,7 +1,7 @@
 const force = {
   type: 'list',
   name: 'force',
-  message: 'Do you want to override it?',
+  message: 'Would you like to override it?',
   default: false,
   choices: [
     {

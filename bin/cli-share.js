@@ -11,7 +11,7 @@ module.exports = co.wrap(function * (input, flags) {
       },
       type: 'input',
       name: 'port',
-      message: 'Which port do you want to share?',
+      message: 'Which port would you like to use?',
       validate: function (answer) {
         return answer !== ''
       }

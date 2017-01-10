@@ -11,7 +11,7 @@ module.exports = co.wrap(function * (input, flags) {
     {
       type: 'checkbox',
       name: 'dependencies',
-      message: 'Select which package you want to install',
+      message: 'Select the packages you\'d like to install',
       choices: deps
     }
   ])
