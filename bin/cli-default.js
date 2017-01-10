@@ -16,28 +16,28 @@ module.exports = co.wrap(function * () {
           value: 'project'
         },
         {
-          name: 'Create a component',
+          name: 'Create a new component',
           value: 'component'
         },
         {
-          name: 'Create a page',
+          name: 'Create a new page',
           value: 'page'
         },
         {
-          name: 'Create a Vuex store module',
+          name: 'Create a new Vuex store module',
           value: 'store'
         },
         {
-          name: 'Install most used npm packages',
+          name: 'Install frequently used npm packages',
           value: 'packages'
         },
         {
-          name: 'Share your local version',
+          name: 'Share the current local revision with ngrok',
           value: 'share'
         },
         new inquirer.Separator(),
         {
-          name: 'Get me out!',
+          name: 'Quit',
           value: false
         }
       ]
