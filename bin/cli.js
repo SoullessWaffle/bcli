@@ -8,7 +8,7 @@ const cli = cac()
 cli.usage(`${chalk.yellow(pkg.name)} [command] [options]`)
 cli.example(`${pkg.name} init my-project`)
 
-cli.command('*', 'What do you want to do?')
+cli.command('*', 'Show the prompt')
 cli.command('project', 'Create a new awesome project')
 cli.command('component', 'Create a new component')
 cli.command('page', 'Create a new page')
